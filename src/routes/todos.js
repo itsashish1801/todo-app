@@ -1,12 +1,19 @@
-import { useEffect, useState } from 'react';
 import { ButtonSolid } from '../components/Button';
+import useTodoStore from '../stores/useTodoStore';
 
 const Todos = () => {
-  const [todos, setTodos] = useState([]);
-  const [inputValue, setInputValue] = useState('');
+  const todos = useTodoStore((state) => state.todos);
+  const addTodo = useTodoStore((state) => state.addTodo);
+  const toggleTodo = useTodoStore((state) => state.toggleTodo);
+  const removeTodo = useTodoStore((state) => state.removeTodo);
 
-  const handleInputChange = (e) => {
-    setInputValue(e.target.value);
+  const handleAddTodo = (e) => {
+    e.preventDefault();
+    const text = e.target.elements.todoText.value;
+    if (text.trim() !== '') {
+      addTodo(text);
+      e.target.elements.todoText.value = '';
+    }
   };
 
   return (
@@ -15,26 +22,25 @@ const Todos = () => {
         Todo List
       </h1>
 
-      <div className='mt-6 max-w-xl mx-auto flex gap-5'>
+      <form
+        className='mt-6 max-w-xl mx-auto flex gap-5'
+        onSubmit={handleAddTodo}
+      >
         <div className='flex-1'>
           <label htmlFor='todo' className='sr-only'>
             New Todo title
           </label>
           <input
             type='text'
-            name='todo'
-            id='todo'
-            value={inputValue}
-            onChange={handleInputChange}
+            name='todoText'
+            id='todoText'
             className='shadow-sm focus:ring-violet-500 focus:border-violet-500 block w-full sm:text-sm border-slate-300 rounded-md'
             placeholder='Your new Todo title here'
           />
         </div>
 
-        <ButtonSolid onClickHandler={() => setTodos([...todos, inputValue])}>
-          Add a new Todo
-        </ButtonSolid>
-      </div>
+        <ButtonSolid type='submit'>Add a new Todo</ButtonSolid>
+      </form>
 
       <div className='mt-12'>
         <div className='px-4 sm:px-6 lg:px-8'>
@@ -50,15 +56,15 @@ const Todos = () => {
 
             <div className='w-full max-w-[12.5rem]'>
               <label
-                for='location'
-                class='block text-sm font-medium text-gray-700'
+                htmlFor='location'
+                className='block text-sm font-medium text-gray-700'
               >
                 Show Todos
               </label>
               <select
                 id='location'
                 name='location'
-                class='mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-violet-500 focus:border-violet-500 sm:text-sm rounded-md'
+                className='mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-violet-500 focus:border-violet-500 sm:text-sm rounded-md'
               >
                 <option selected>All</option>
                 <option>Completed</option>
@@ -86,7 +92,7 @@ const Todos = () => {
                       </tr>
                     </thead>
                     <tbody className='divide-y divide-slate-200 bg-white'>
-                      {todos.map(({ text, _id: id }) => (
+                      {todos.map(({ text, completed }, index) => (
                         <tr key={text} className='divide-x divide-slate-200'>
                           <td className='whitespace-nowrap py-4 pl-4 pr-4 text-sm font-medium text-slate-900 sm:pl-6 w-full'>
                             <div className='flex items-center'>
@@ -95,22 +101,24 @@ const Todos = () => {
                                   id='todo'
                                   name='todo'
                                   type='checkbox'
-                                  class='focus:ring-violet-500 h-4 w-4 text-violet-600 border-slate-300 rounded'
+                                  className='focus:ring-violet-500 h-4 w-4 text-violet-600 border-slate-300 rounded'
                                 />
                               </div>
                               <div className='text-sm ml-3 mt-0.5'>
                                 <label
-                                  for='todo'
-                                  class='font-medium text-gray-700 select-none'
+                                  htmlFor='todo'
+                                  className='font-medium text-gray-700 select-none'
                                 >
-                                  Annette Black
+                                  {text}
                                 </label>
                               </div>
                             </div>
                           </td>
                           <td className='whitespace p-4 text-slate-500'>
                             <button
-                              onClick={() => {}}
+                              onClick={() => {
+                                removeTodo(index);
+                              }}
                               type='button'
                               className='inline-flex items-center justify-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-xs font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto'
                             >
