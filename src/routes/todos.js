@@ -38,14 +38,32 @@ const Todos = () => {
 
       <div className='mt-12'>
         <div className='px-4 sm:px-6 lg:px-8'>
-          <div className='sm:flex sm:items-center'>
-            <div className='sm:flex-auto'>
+          <div className='sm:flex sm:items-center sm:gap-6'>
+            <div className='sm:flex-auto w-full'>
               <h1 className='text-xl font-semibold text-slate-900'>
                 Your Todo
               </h1>
               <p className='mt-1 text-sm text-slate-700'>
                 Todo that you'll add will be visible here.
               </p>
+            </div>
+
+            <div className='w-full max-w-[12.5rem]'>
+              <label
+                for='location'
+                class='block text-sm font-medium text-gray-700'
+              >
+                Show Todos
+              </label>
+              <select
+                id='location'
+                name='location'
+                class='mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-violet-500 focus:border-violet-500 sm:text-sm rounded-md'
+              >
+                <option selected>All</option>
+                <option>Completed</option>
+                <option>Incomplete</option>
+              </select>
             </div>
           </div>
           <div className='mt-6 flex flex-col'>
@@ -71,17 +89,26 @@ const Todos = () => {
                       {todos.map(({ text, _id: id }) => (
                         <tr key={text} className='divide-x divide-slate-200'>
                           <td className='whitespace-nowrap py-4 pl-4 pr-4 text-sm font-medium text-slate-900 sm:pl-6 w-full'>
-                            {text}
+                            <div className='flex items-center'>
+                              <div>
+                                <input
+                                  id='todo'
+                                  name='todo'
+                                  type='checkbox'
+                                  class='focus:ring-violet-500 h-4 w-4 text-violet-600 border-slate-300 rounded'
+                                />
+                              </div>
+                              <div className='text-sm ml-3 mt-0.5'>
+                                <label
+                                  for='todo'
+                                  class='font-medium text-gray-700 select-none'
+                                >
+                                  Annette Black
+                                </label>
+                              </div>
+                            </div>
                           </td>
-                          <td className='whitespace p-4 text-sm text-slate-500'>
-                            <button
-                              type='button'
-                              className='inline-flex items-center justify-center rounded-md border border-transparent bg-slate-600 px-4 py-2 text-xs font-medium text-white shadow-sm hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 sm:w-auto'
-                            >
-                              Edit
-                            </button>
-                          </td>
-                          <td className='whitespace p-4 text-sm text-slate-500'>
+                          <td className='whitespace p-4 text-slate-500'>
                             <button
                               onClick={() => {}}
                               type='button'
