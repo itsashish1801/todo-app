@@ -1,5 +1,5 @@
-const todos = () => {
-  return <div>todos</div>;
+const Todos = () => {
+  return <div>Todos</div>;
 };
 
-export default todos;
+export default Todos;
