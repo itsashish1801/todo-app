@@ -1,4 +1,4 @@
-# Todopal App
+# Project by
 
 Your Name here
 
