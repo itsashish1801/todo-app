@@ -1,6 +1,10 @@
-export function ButtonOutline({ children }) {
+export function ButtonOutline({ children, onClickHandler }) {
   return (
-    <button className='group inline-flex ring-1 items-center justify-center rounded-full py-2 px-4 text-sm focus:outline-none ring-slate-200 text-slate-700 hover:text-slate-900 hover:ring-slate-300 active:bg-slate-100 active:text-slate-600 focus-visible:outline-violet-600 focus-visible:ring-slate-300'>
+    <button
+      onClick={onClickHandler}
+      type='button'
+      className='group inline-flex ring-1 items-center justify-center rounded-full py-2 px-4 text-sm focus:outline-none ring-slate-200 text-slate-700 hover:text-slate-900 hover:ring-slate-300 active:bg-slate-100 active:text-slate-600 focus-visible:outline-violet-600 focus-visible:ring-slate-300'
+    >
       {children}
     </button>
   );
