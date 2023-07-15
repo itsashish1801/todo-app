@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+# Todopal App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Your Name here
 
-## Available Scripts
+# Todopal App
 
-In the project directory, you can run:
+Todopal is a simple todo application built with Create React App, Tailwind CSS, Zustand, ESLint and React Hot Toast.
 
-### `npm start`
+## Description
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Todopal App is a basic todo management application that allows users to keep track of their tasks. Users can create new todos by entering a task description and clicking the "Add Todo" button. They can also delete existing todos by clicking the delete button associated with each todo.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The project includes the following features:
 
-### `npm test`
+- Ability to create new todos.
+- Ability to delete existing todos.
+- Form state management using Zustand, a minimalistic state management library for React.
+- Styling the components using Tailwind CSS, a utility-first CSS framework.
+- Displaying toast notifications using React Hot Toast, a lightweight and customizable toast notification library.
+- A contact form to save user's firstname, lastname, email and comments.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Technologies Used
 
-### `npm run build`
+- Create React App: A tool to create React applications with a pre-configured setup.
+- Tailwind CSS: A utility-first CSS framework for quickly building responsive designs.
+- Zustand: A small, fast, and scalable state management library for React.
+- React Hot Toast: A lightweight and customizable toast notification library for React.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Installation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Clone the repository.
+2. Navigate to the project directory.
+3. Run `npm install` to install the project dependencies.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Usage
 
-### `npm run eject`
+1. Run `npm start` to start the development server.
+2. Open your browser and navigate to `http://localhost:3000`.
+3. Enter a task description in the input field.
+4. Click the "Add Todo" button to create a new todo.
+5. Click the delete button (trash icon) next to a todo to delete it.
+6. To mark a todo as completed, click the check icon.
+7. Interact with the contact form to enter your information.
+8. Submit the form to save the form data and display a success toast notification.
+9. Use the Reset button to clear the form fields and remove the stored form data.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Future improvements based on user stories
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. As a user, I want to be able to set a due date for a task so that I know when it needs to be completed.
+2. As a user, I want to be able to prioritize tasks so that I can focus on the most important ones first.
+3. As a user, I want to be able to edit or update a task in case any details change.
+4. As a user, I want to be able to set reminders for important tasks so that I don't forget to work on them.
+5. As a user, I want to be able to search for specific tasks so that I can quickly find what I'm looking for.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Contributing
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Contributions are welcome! If you have any ideas or suggestions, please open an issue or submit a pull request.
 
-## Learn More
+## License
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
