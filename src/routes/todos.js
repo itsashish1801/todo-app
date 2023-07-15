@@ -5,11 +5,13 @@ import useCurrentCategoryStore from '../stores/useCurrentCategoryStore';
 import useTodoStore from '../stores/useTodoStore';
 
 import { ButtonSolid } from '../components/Button';
+import { useEffect } from 'react';
 
 const notify = (text) => toast.error(text);
 
 const Todos = () => {
   const todos = useTodoStore((state) => state.todos);
+  const setTodos = useTodoStore((state) => state.setTodos);
   const addTodo = useTodoStore((state) => state.addTodo);
   const toggleTodo = useTodoStore((state) => state.toggleTodo);
   const removeTodo = useTodoStore((state) => state.removeTodo);
@@ -48,6 +50,11 @@ const Todos = () => {
     }
   };
 
+  useEffect(() => {
+    const storedTodos = JSON.parse(localStorage.getItem('todos')) || [];
+    setTodos(storedTodos);
+  }, [setTodos]);
+
   return (
     <div className='container mx-auto max-w-2xl px-5 pt-6'>
       <Toaster position='bottom-right' />
@@ -56,7 +63,7 @@ const Todos = () => {
       </h1>
 
       <form
-        className='mt-6 max-w-xl mx-auto flex gap-5'
+        className='mt-6 max-w-xl mx-auto flex flex-col sm:flex-row gap-5'
         onSubmit={handleAddTodo}
       >
         <div className='flex-1'>
@@ -67,7 +74,7 @@ const Todos = () => {
             type='text'
             name='todoText'
             id='todoText'
-            className='shadow-sm focus:ring-violet-500 focus:border-violet-500 block w-full sm:text-sm border-slate-300 rounded-md'
+            className='shadow-sm focus:ring-violet-500 focus:border-violet-500 block w-full text-sm border-slate-300 rounded-md'
             placeholder='Your new Todo title here'
           />
         </div>
@@ -77,7 +84,7 @@ const Todos = () => {
 
       <div className='mt-12'>
         <div className='px-4 sm:px-6 lg:px-8'>
-          <div className='sm:flex sm:items-center sm:gap-6'>
+          <div className='flex flex-col gap-6 sm:flex-row sm:items-center'>
             <div className='sm:flex-auto w-full'>
               <h1 className='text-xl font-semibold text-slate-900'>
                 Your Todo
@@ -127,6 +134,13 @@ const Todos = () => {
                       </tr>
                     </thead>
                     <tbody className='divide-y divide-slate-200 bg-white'>
+                      {filterTodo().length === 0 && (
+                        <tr>
+                          <td className='text-sm py-2.5 px-2 text-center text-slate-500 font-medium'>
+                            Nothing to show here 😐
+                          </td>
+                        </tr>
+                      )}
                       {filterTodo().map(({ text, completed }, index) => (
                         <tr key={text} className='divide-x divide-slate-200'>
                           <td className='whitespace-nowrap py-4 pl-4 pr-4 text-sm font-medium text-slate-900 sm:pl-6 w-full'>
