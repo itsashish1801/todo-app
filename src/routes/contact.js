@@ -30,7 +30,7 @@ const Contact = () => {
   }, [setFormState]);
 
   return (
-    <div className='container mx-auto max-w-3xl px-5 pt-6'>
+    <div className='container mx-auto max-w-3xl px-5 py-8'>
       <Toaster position='bottom-right' />
       <h1 className='text-3xl font-medium font-display text-center'>
         Contact Us
