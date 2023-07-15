@@ -1,5 +1,6 @@
 import { ButtonOutline, ButtonSolid } from './Button';
 import Container from './Container';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
@@ -25,8 +26,12 @@ const Hero = () => {
         powerful task-tracking app.
       </p>
       <div className='mt-12 flex justify-center gap-x-6'>
-        <ButtonSolid>Make Your Todo Now</ButtonSolid>
-        <ButtonOutline>Contact Form</ButtonOutline>
+        <Link to='/todos'>
+          <ButtonSolid>Make Your Todo Now</ButtonSolid>
+        </Link>
+        <Link to='/contact'>
+          <ButtonOutline>Contact Form</ButtonOutline>
+        </Link>
       </div>
     </Container>
   );
