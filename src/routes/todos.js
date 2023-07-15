@@ -26,7 +26,7 @@ const Todos = () => {
             id='todo'
             value={inputValue}
             onChange={handleInputChange}
-            className='shadow-sm focus:ring-violet-500 focus:border-violet-500 block w-full sm:text-sm border-gray-300 rounded-md'
+            className='shadow-sm focus:ring-violet-500 focus:border-violet-500 block w-full sm:text-sm border-slate-300 rounded-md'
             placeholder='Your new Todo title here'
           />
         </div>
@@ -40,8 +40,10 @@ const Todos = () => {
         <div className='px-4 sm:px-6 lg:px-8'>
           <div className='sm:flex sm:items-center'>
             <div className='sm:flex-auto'>
-              <h1 className='text-xl font-semibold text-gray-900'>Your Todo</h1>
-              <p className='mt-1 text-sm text-gray-700'>
+              <h1 className='text-xl font-semibold text-slate-900'>
+                Your Todo
+              </h1>
+              <p className='mt-1 text-sm text-slate-700'>
                 Todo that you'll add will be visible here.
               </p>
             </div>
@@ -50,36 +52,36 @@ const Todos = () => {
             <div className='-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8'>
               <div className='inline-block min-w-full py-2 align-middle md:px-6 lg:px-8'>
                 <div className='overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg'>
-                  <table className='min-w-full divide-y divide-gray-300'>
-                    <thead className='bg-gray-50'>
-                      <tr className='divide-x divide-gray-200'>
+                  <table className='min-w-full divide-y divide-slate-300'>
+                    <thead className='bg-slate-50'>
+                      <tr className='divide-x divide-slate-200'>
                         <th
                           scope='col'
-                          className='py-3.5 pl-4 pr-4 text-left text-sm font-semibold text-gray-900 sm:pl-6'
+                          className='py-3.5 pl-4 pr-4 text-left text-sm font-semibold text-slate-900 sm:pl-6'
                         >
                           Todo
                         </th>
                         <th
                           scope='col'
-                          className='px-4 py-3.5 text-left text-sm font-semibold text-gray-900'
+                          className='px-4 py-3.5 text-left text-sm font-semibold text-slate-900'
                         ></th>
                       </tr>
                     </thead>
-                    <tbody className='divide-y divide-gray-200 bg-white'>
+                    <tbody className='divide-y divide-slate-200 bg-white'>
                       {todos.map(({ text, _id: id }) => (
-                        <tr key={text} className='divide-x divide-gray-200'>
-                          <td className='whitespace-nowrap py-4 pl-4 pr-4 text-sm font-medium text-gray-900 sm:pl-6 w-full'>
+                        <tr key={text} className='divide-x divide-slate-200'>
+                          <td className='whitespace-nowrap py-4 pl-4 pr-4 text-sm font-medium text-slate-900 sm:pl-6 w-full'>
                             {text}
                           </td>
-                          <td className='whitespace p-4 text-sm text-gray-500'>
+                          <td className='whitespace p-4 text-sm text-slate-500'>
                             <button
                               type='button'
-                              className='inline-flex items-center justify-center rounded-md border border-transparent bg-gray-600 px-4 py-2 text-xs font-medium text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 sm:w-auto'
+                              className='inline-flex items-center justify-center rounded-md border border-transparent bg-slate-600 px-4 py-2 text-xs font-medium text-white shadow-sm hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 sm:w-auto'
                             >
                               Edit
                             </button>
                           </td>
-                          <td className='whitespace p-4 text-sm text-gray-500'>
+                          <td className='whitespace p-4 text-sm text-slate-500'>
                             <button
                               onClick={() => {}}
                               type='button'
