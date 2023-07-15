@@ -1,7 +1,9 @@
 import Container from './Container';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
+  const { pathname } = useLocation();
+
   return (
     <header className='py-10'>
       <Container>
@@ -26,13 +28,17 @@ const Navbar = () => {
           <div className='flex gap-6 md:gap-12 font-display'>
             <Link
               to='/todos'
-              className='inline-block rounded-lg px-2 py-1 text-slate-700 hover:bg-slate-100 hover:text-slate-900'
+              className={`inline-block rounded-lg px-2 py-1 text-slate-700 hover:bg-slate-100 hover:text-slate-900 ${
+                pathname === '/todos' ? 'bg-slate-100' : ''
+              }`}
             >
               Todos
             </Link>
             <Link
               to='/contact'
-              className='inline-block rounded-lg px-2 py-1 text-slate-700 hover:bg-slate-100 hover:text-slate-900'
+              className={`inline-block rounded-lg px-2 py-1 text-slate-700 hover:bg-slate-100 hover:text-slate-900 ${
+                pathname === '/contact' ? 'bg-slate-100' : ''
+              }`}
             >
               Contact
             </Link>
