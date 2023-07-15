@@ -1,5 +1,12 @@
-import { ButtonSolid } from '../components/Button';
+import toast, { Toaster } from 'react-hot-toast';
+import { TrashIcon } from '@heroicons/react/24/solid';
+
+import useCurrentCategoryStore from '../stores/useCurrentCategoryStore';
 import useTodoStore from '../stores/useTodoStore';
+
+import { ButtonSolid } from '../components/Button';
+
+const notify = (text) => toast.error(text);
 
 const Todos = () => {
   const todos = useTodoStore((state) => state.todos);
@@ -7,9 +14,34 @@ const Todos = () => {
   const toggleTodo = useTodoStore((state) => state.toggleTodo);
   const removeTodo = useTodoStore((state) => state.removeTodo);
 
+  const category = useCurrentCategoryStore((state) => state.category);
+  const setCategory = useCurrentCategoryStore((state) => state.setCategory);
+
+  const filterTodo = () => {
+    if (category === 'completed')
+      return todos.filter((todo) => todo.completed === true);
+
+    if (category === 'incomplete')
+      return todos.filter((todo) => todo.completed === false);
+
+    return todos;
+  };
+
+  const isSameTodo = (value) => {
+    const todoTexts = todos.map((todo) => todo.text);
+    return todoTexts.includes(value);
+  };
+
   const handleAddTodo = (e) => {
     e.preventDefault();
+
     const text = e.target.elements.todoText.value;
+
+    if (isSameTodo(text)) {
+      notify('Todo already exist!');
+      return;
+    }
+
     if (text.trim() !== '') {
       addTodo(text);
       e.target.elements.todoText.value = '';
@@ -18,6 +50,7 @@ const Todos = () => {
 
   return (
     <div className='container mx-auto max-w-2xl px-5 pt-6'>
+      <Toaster position='bottom-right' />
       <h1 className='text-3xl font-medium font-display text-center'>
         Todo List
       </h1>
@@ -64,11 +97,13 @@ const Todos = () => {
               <select
                 id='location'
                 name='location'
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
                 className='mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-violet-500 focus:border-violet-500 sm:text-sm rounded-md'
               >
-                <option selected>All</option>
-                <option>Completed</option>
-                <option>Incomplete</option>
+                <option value='all'>All</option>
+                <option value='completed'>Completed</option>
+                <option value='incomplete'>Incomplete</option>
               </select>
             </div>
           </div>
@@ -92,7 +127,7 @@ const Todos = () => {
                       </tr>
                     </thead>
                     <tbody className='divide-y divide-slate-200 bg-white'>
-                      {todos.map(({ text, completed }, index) => (
+                      {filterTodo().map(({ text, completed }, index) => (
                         <tr key={text} className='divide-x divide-slate-200'>
                           <td className='whitespace-nowrap py-4 pl-4 pr-4 text-sm font-medium text-slate-900 sm:pl-6 w-full'>
                             <div className='flex items-center'>
@@ -101,13 +136,13 @@ const Todos = () => {
                                   id='todo'
                                   name='todo'
                                   type='checkbox'
-                                  className='focus:ring-violet-500 h-4 w-4 text-violet-600 border-slate-300 rounded'
+                                  checked={completed}
+                                  onChange={() => toggleTodo(index)}
+                                  className='focus:ring-violet-500 h-4 w-4 text-violet-600 border-slate-300 rounded peer'
                                 />
-                              </div>
-                              <div className='text-sm ml-3 mt-0.5'>
                                 <label
                                   htmlFor='todo'
-                                  className='font-medium text-gray-700 select-none'
+                                  className='font-medium text-gray-700 select-none text-sm ml-3 translate-y-[1px] inline-block peer-checked:line-through peer-checked:opacity-60'
                                 >
                                   {text}
                                 </label>
@@ -120,9 +155,9 @@ const Todos = () => {
                                 removeTodo(index);
                               }}
                               type='button'
-                              className='inline-flex items-center justify-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-xs font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto'
+                              className='inline-flex items-center justify-center text-red-500 hover:text-red-600'
                             >
-                              Delete
+                              <TrashIcon className='h-5 w-5' />
                             </button>
                           </td>
                         </tr>
