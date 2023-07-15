@@ -16,7 +16,7 @@ const Navbar = () => {
             </svg>
 
             <span className='font-display text-xl'>
-              Todo<span className='font-bold text-green-500'>Pal</span>
+              Todo<span className='font-bold text-emerald-500'>Pal</span>
             </span>
           </div>
 
